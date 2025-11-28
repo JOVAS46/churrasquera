@@ -27,16 +27,16 @@
                 <ul id="{{ $menu->id_menu }}"
                     class="collapse dropdown-nav {{ request()->is(ltrim($menu->url ?? '', '/') . '*') ? 'show' : '' }}">
                     @foreach ($menu->hijos as $submenu)
-                        <li>
-                            <a href="{{ $submenu->url ? url(ltrim($submenu->url, '/')) : '#' }}"
-                               class="{{ request()->is(ltrim($submenu->url ?? '', '/') . '*') ? 'active' : '' }}">
-                                @if ($submenu->icono)
-                                    <i class="{{ $submenu->icono }} me-2"></i>
-                                @endif
-                                {{ $submenu->nombre }}
-                            </a>
-                        </li>
-                    @endforeach
+    <li>
+        <a href="{{ $submenu->url ? $submenu->url : '#' }}"
+           class="{{ request()->is(ltrim($submenu->url ?? '', '/') . '*') ? 'active' : '' }}">
+            @if ($submenu->icono)
+                <i class="{{ $submenu->icono }} me-2"></i>
+            @endif
+            {{ $submenu->nombre }}
+        </a>
+    </li>
+@endforeach
                 </ul>
             </li>
         @else
