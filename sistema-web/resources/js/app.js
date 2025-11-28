@@ -4,10 +4,8 @@ import { createInertiaApp } from '@inertiajs/vue3';
 
 // Helper simple para route() - genera URLs de Laravel
 window.route = function(name, params = {}) {
-    // Obtener base URL (para subcarpetas en producción)
-    const baseUrl = window.BASE_URL && window.BASE_URL !== 'http://localhost'
-        ? window.BASE_URL
-        : '';
+    // Base URL ESTÁTICA
+    const baseUrl = 'https://mail.tecnoweb.org.bo/inf513/grupo09sa/churrasquera/sistema-web/public';
 
     const routes = {
         // Rutas de pedidos

@@ -18,10 +18,8 @@ window.Popper = Popper;
 
 window.axios = axios;
 
-// Configurar base URL para peticiones AJAX
-if (window.BASE_URL && window.BASE_URL !== 'http://localhost') {
-    window.axios.defaults.baseURL = window.BASE_URL;
-}
+// Configurar base URL ESTÁTICA para peticiones AJAX
+window.axios.defaults.baseURL = 'https://mail.tecnoweb.org.bo/inf513/grupo09sa/churrasquera/sistema-web/public';
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
