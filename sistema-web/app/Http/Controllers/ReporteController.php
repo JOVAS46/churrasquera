@@ -27,11 +27,61 @@ class ReporteController extends Controller
     }
 
     /**
-     * Vista de Reportes de Ventas
+     * Vista de Reportes de Ventas - Estadísticas de Visitas
      */
     public function ventas()
     {
-        return view('reportes.ventas');
+        // Estadísticas de visitas
+        $hoy = Carbon::today();
+        $estaSemana = Carbon::now()->startOfWeek();
+        $esteMes = Carbon::now()->startOfMonth();
+
+        // Total de visitas
+        $visitasTotales = ContadorVisitas::sum('visitas');
+        $visitasHoy = ContadorVisitas::where('fecha', $hoy)->sum('visitas');
+        $visitasSemana = ContadorVisitas::where('fecha', '>=', $estaSemana)->sum('visitas');
+        $visitasMes = ContadorVisitas::where('fecha', '>=', $esteMes)->sum('visitas');
+
+        // Páginas únicas
+        $paginasUnicas = ContadorVisitas::distinct('pagina')->count('pagina');
+
+        // Páginas más visitadas
+        $paginasMasVisitadas = ContadorVisitas::select('pagina', DB::raw('SUM(visitas) as total_visitas'))
+            ->groupBy('pagina')
+            ->orderByDesc('total_visitas')
+            ->limit(10)
+            ->get();
+
+        // Visitas por día (últimos 7 días)
+        $visitasPorDia = ContadorVisitas::select(
+                'fecha',
+                DB::raw('SUM(visitas) as total_visitas')
+            )
+            ->where('fecha', '>=', Carbon::now()->subDays(6))
+            ->groupBy('fecha')
+            ->orderBy('fecha')
+            ->get();
+
+        // Visitas por mes (últimos 12 meses)
+        $visitasPorMes = ContadorVisitas::select(
+                DB::raw('DATE_TRUNC(\'month\', fecha) as mes'),
+                DB::raw('SUM(visitas) as total_visitas')
+            )
+            ->where('fecha', '>=', Carbon::now()->subMonths(11)->startOfMonth())
+            ->groupBy('mes')
+            ->orderBy('mes')
+            ->get();
+
+        return view('reportes.ventas', compact(
+            'visitasTotales',
+            'visitasHoy',
+            'visitasSemana',
+            'visitasMes',
+            'paginasUnicas',
+            'paginasMasVisitadas',
+            'visitasPorDia',
+            'visitasPorMes'
+        ));
     }
 
     /**
