@@ -27,13 +27,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-        // Forzar URL base y esquema SIEMPRE (para subcarpetas)
-        $appUrl = config('app.url');
-        if ($appUrl && $appUrl !== 'http://localhost') {
-            URL::forceRootUrl($appUrl);
-            if (str_starts_with($appUrl, 'https://')) {
-                URL::forceScheme('https');
-            }
-        }
+        // Forzar URL base HARDCODEADA para subcarpetas
+        URL::forceRootUrl('https://mail.tecnoweb.org.bo/inf513/grupo09sa/churrasquera/sistema-web/public');
+        URL::forceScheme('https');
     }
 }
