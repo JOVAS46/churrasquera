@@ -27,10 +27,11 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-        // Forzar URL base y esquema en producción
-        if (config('app.env') === 'production') {
-            URL::forceRootUrl(config('app.url'));
-            if (str_starts_with(config('app.url'), 'https://')) {
+        // Forzar URL base y esquema SIEMPRE (para subcarpetas)
+        $appUrl = config('app.url');
+        if ($appUrl && $appUrl !== 'http://localhost') {
+            URL::forceRootUrl($appUrl);
+            if (str_starts_with($appUrl, 'https://')) {
                 URL::forceScheme('https');
             }
         }
