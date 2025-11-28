@@ -264,7 +264,7 @@ export default {
             // Agregar nuevo tema
             const linkTema = document.createElement('link')
             linkTema.rel = 'stylesheet'
-            linkTema.href = `/css/themes/${archivoTema}`
+            linkTema.href = `/inf513/grupo09sa/churrasquera/sistema-web/public/css/themes/${archivoTema}`
             linkTema.setAttribute('data-tema', tema)
             document.head.appendChild(linkTema)
             
