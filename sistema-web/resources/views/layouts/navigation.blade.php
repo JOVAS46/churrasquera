@@ -28,7 +28,7 @@
                     class="collapse dropdown-nav {{ request()->is(ltrim($menu->url ?? '', '/') . '*') ? 'show' : '' }}">
                     @foreach ($menu->hijos as $submenu)
                         <li>
-                            <a href="{{ $submenu->url ? url($submenu->url) : '#' }}"
+                            <a href="{{ $submenu->url ? url(ltrim($submenu->url, '/')) : '#' }}"
                                class="{{ request()->is(ltrim($submenu->url ?? '', '/') . '*') ? 'active' : '' }}">
                                 @if ($submenu->icono)
                                     <i class="{{ $submenu->icono }} me-2"></i>
@@ -42,7 +42,7 @@
         @else
             {{-- Menú simple sin submenús --}}
             <li class="nav-item {{ request()->is(ltrim($menu->url ?? '', '/') . '*') ? 'active' : '' }}">
-                <a href="{{ $menu->url ? url($menu->url) : '#' }}">
+                <a href="{{ $menu->url ? url(ltrim($menu->url, '/')) : '#' }}">
                     <span class="icon">
                         <i class="{{ $menu->icono ?? 'lni lni-circle' }}"></i>
                     </span>
