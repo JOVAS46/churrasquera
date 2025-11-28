@@ -16,6 +16,7 @@ use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\MenuNavegacionController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\BusquedaController;
+use App\Http\Controllers\ProductoController;
 
 // Controladores específicos por rol
 use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
@@ -44,6 +45,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(
 Route::middleware('contar.visitas')->group(function () {
     Route::resources([
         'categorias' => CategoriaController::class,
+        'productos' => ProductoController::class,
         'insumos' => InsumoController::class,
         'unidades' => UnidadMedidaController::class,
         'proveedores' => ProveedorController::class,
@@ -51,6 +53,9 @@ Route::middleware('contar.visitas')->group(function () {
         'recetas' => RecetaController::class,
         'ventas' => VentaController::class,
     ]);
+
+    // Ruta adicional para productos
+    Route::post('productos/{producto}/toggle-disponibilidad', [ProductoController::class, 'toggleDisponibilidad'])->name('productos.toggle-disponibilidad');
 });
 
 // Rutas para el sistema de pedidos
@@ -135,10 +140,16 @@ Route::get('predicciones', [PrediccionesController::class, 'index'])
     ->middleware('role:admin'); // Solo usuarios con rol "admin"
 
 Route::get('/reportes', [ReporteController::class, 'index'])->name('reportes.index');
+Route::get('/reportes/dashboard', [ReporteController::class, 'dashboard'])->name('reportes.dashboard');
 Route::get('/reportes/ventas-data', [ReporteController::class, 'getVentasData'])->name('reportes.ventas-data');
 Route::get('/reportes/parcial/semanal', [ReporteController::class, 'parcialSemanal']);
 Route::get('/reportes/parcial/mensual', [ReporteController::class, 'parcialMensual']);
 Route::get('/reportes/parcial/anual', [ReporteController::class, 'parcialAnual']);
+
+// Rutas de reportes específicos
+Route::get('/reportes/ventas', [ReporteController::class, 'ventas'])->name('reportes.ventas');
+Route::get('/reportes/inventario', [ReporteController::class, 'inventario'])->name('reportes.inventario');
+Route::get('/reportes/bitacora', [ReporteController::class, 'bitacora'])->name('reportes.bitacora');
 
 // Rutas de perfil
 Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
@@ -162,6 +173,9 @@ Route::prefix('api')->group(function () {
     Route::get('/busqueda/sugerencias', [BusquedaController::class, 'sugerencias'])->name('api.busqueda.sugerencias');
     Route::get('/busqueda/resultados', [BusquedaController::class, 'buscar'])->name('api.busqueda.resultados');
     Route::post('/busqueda/guardar', [BusquedaController::class, 'guardar'])->name('api.busqueda.guardar');
+
+    // API para contador de visitas
+    Route::get('/contador-visitas', [ReporteController::class, 'apiContadorVisitas'])->name('api.contador-visitas');
 
     // 🧪 API de prueba para mesas (SIN CSRF)
     Route::post('/mesas/{mesa}/cambiar-estado', [MesaController::class, 'cambiarEstado'])->name('api.mesas.cambiar-estado')->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);

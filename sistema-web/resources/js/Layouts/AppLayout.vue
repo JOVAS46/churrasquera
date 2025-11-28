@@ -139,19 +139,10 @@
             <footer class="footer">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-6 order-last order-md-first">
-                            <div class="copyright text-md-start">
-                                <p class="text-sm">
+                        <div class="col-md-12 text-center mb-2">
+                            <div class="copyright">
+                                <p class="text-sm mb-0">
                                     Sistema de Gestión - CHURRASQUERIA ROBERTO © {{ new Date().getFullYear() }}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="text-md-end">
-                                <p class="text-sm" v-if="$page.props.contador">
-                                    <i class="lni lni-eye me-1"></i>
-                                    Visitas hoy: <strong>{{ $page.props.contador.visitas_hoy }}</strong> |
-                                    Total: <strong>{{ $page.props.contador.visitas_total }}</strong>
                                 </p>
                             </div>
                         </div>
@@ -159,6 +150,10 @@
                 </div>
             </footer>
             <!-- ========== footer end =========== -->
+
+            <!-- Contador de Visitas -->
+            <ContadorVisitas />
+            <!-- Contador de Visitas End -->
         </main>
         <!-- ======== main-wrapper end =========== -->
         
@@ -174,6 +169,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import ConfiguradorTemas from '@/Components/ConfiguradorTemas.vue';
 import BusquedaGlobal from '@/Components/BusquedaGlobal.vue';
+import ContadorVisitas from '@/Components/ContadorVisitas.vue';
 
 const page = usePage();
 const sidebarOpen = ref(true);

@@ -38,9 +38,9 @@
                                                 :class="{ 'is-invalid': errors.id_cliente }"
                                                 required>
                                             <option value="">Seleccionar cliente...</option>
-                                            <option v-for="cliente in clientes" 
-                                                    :key="cliente.id" 
-                                                    :value="cliente.id">
+                                            <option v-for="cliente in clientes"
+                                                    :key="cliente.id_usuario"
+                                                    :value="cliente.id_usuario">
                                                 {{ cliente.nombre }} {{ cliente.apellido }} - {{ cliente.email }}
                                             </option>
                                         </select>
@@ -121,7 +121,7 @@
                                     <label class="form-label">Mesa <span class="text-danger">*</span></label>
                                     <select v-model="form.id_mesa"
                                             class="form-select"
-                                            :class="{ 'is-invalid': errors.mesa_id }"
+                                            :class="{ 'is-invalid': errors.id_mesa }"
                                             required>
                                         <option value="">Seleccionar mesa...</option>
                                         <optgroup v-if="mesasDisponibles.length > 0" label="Mesas Disponibles">
@@ -135,7 +135,7 @@
                                             </option>
                                         </optgroup>
                                     </select>
-                                    <div v-if="errors.mesa_id" class="invalid-feedback">{{ errors.mesa_id }}</div>
+                                    <div v-if="errors.id_mesa" class="invalid-feedback">{{ errors.id_mesa }}</div>
                                     <div v-if="!verificandoDisponibilidad && form.fecha_reserva && form.numero_personas && mesasDisponibles.length === 0" 
                                          class="form-text text-danger">
                                         No hay mesas disponibles para esta fecha y número de personas
@@ -318,12 +318,12 @@ const mesasOcupadas = ref([])
 
 // Formularios
 const form = useForm({
-    cliente_id: props.reserva?.cliente_id || '',
+    id_cliente: props.reserva?.id_cliente || '',
     fecha_reserva: props.reserva?.fecha_reserva || '',
     hora_inicio: props.reserva?.hora_inicio || '',
     hora_fin: props.reserva?.hora_fin || '',
     numero_personas: props.reserva?.numero_personas || 2,
-    mesa_id: props.reserva?.mesa_id || '',
+    id_mesa: props.reserva?.id_mesa || '',
     observaciones: props.reserva?.observaciones || ''
 })
 
@@ -343,14 +343,14 @@ const fechaMinima = computed(() => {
 const clienteSeleccionado = computed(() => {
     // Si solo hay un cliente (modo cliente), usarlo automáticamente
     if (props.clientes && props.clientes.length === 1) {
-        if (!form.id_cliente) form.id_cliente = props.clientes[0].id;
+        if (!form.id_cliente) form.id_cliente = props.clientes[0].id_usuario;
         return props.clientes[0];
     }
-    return props.clientes.find(cliente => cliente.id == form.id_cliente);
+    return props.clientes.find(cliente => cliente.id_usuario == form.id_cliente);
 })
 
 const mesaSeleccionada = computed(() => {
-    return [...mesasDisponibles.value, ...mesasOcupadas.value].find(mesa => mesa.id_mesa == form.mesa_id)
+    return [...mesasDisponibles.value, ...mesasOcupadas.value].find(mesa => mesa.id_mesa == form.id_mesa)
 })
 
 const duracionReserva = computed(() => {
@@ -371,7 +371,7 @@ const duracionReserva = computed(() => {
 })
 
 const puedeGuardar = computed(() => {
-    return form.id_cliente && form.fecha_reserva && form.hora_inicio && 
+    return form.id_cliente && form.fecha_reserva && form.hora_inicio &&
            form.hora_fin && form.numero_personas && form.id_mesa &&
            mesasDisponibles.value.some(mesa => mesa.id_mesa == form.id_mesa)
 })
@@ -403,7 +403,7 @@ async function verificarDisponibilidad() {
     verificandoDisponibilidad.value = true
     
     try {
-        const response = await axios.get(route('reservas.verificar-disponibilidad'), {
+        const response = await axios.get(route('api.reservas.disponibilidad'), {
             params: {
                 fecha: form.fecha_reserva,
                 hora_inicio: form.hora_inicio,
@@ -417,8 +417,8 @@ async function verificarDisponibilidad() {
         mesasOcupadas.value = response.data.ocupadas || []
         
         // Si la mesa actual no está disponible, resetear selección
-        if (form.mesa_id && !mesasDisponibles.value.some(mesa => mesa.id_mesa == form.mesa_id)) {
-            form.mesa_id = ''
+        if (form.id_mesa && !mesasDisponibles.value.some(mesa => mesa.id_mesa == form.id_mesa)) {
+            form.id_mesa = ''
         }
     } catch (error) {
         console.error('Error al verificar disponibilidad:', error)
@@ -453,7 +453,7 @@ async function crearCliente() {
         
         // Agregar nuevo cliente a la lista y seleccionarlo
         props.clientes.push(response.data.cliente)
-        form.cliente_id = response.data.cliente.id
+        form.id_cliente = response.data.cliente.id_usuario
         
         // Limpiar formulario y cerrar modal
         nuevoCliente.value = { nombre: '', apellido: '', email: '', telefono: '' }

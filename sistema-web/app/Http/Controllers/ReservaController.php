@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Carbon\Carbon;
 
@@ -74,6 +75,7 @@ class ReservaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'id_cliente' => 'required|exists:usuario,id_usuario',
             'fecha_reserva' => 'required|date|after_or_equal:today',
             'hora_inicio' => 'required|date_format:H:i',
             'hora_fin' => 'required|date_format:H:i|after:hora_inicio',
@@ -114,7 +116,7 @@ class ReservaController extends Controller
                 'numero_personas' => $request->numero_personas,
                 'estado' => 'pendiente',
                 'observaciones' => $request->observaciones,
-                'id_cliente' => Auth::user()->id_usuario,
+                'id_cliente' => $request->id_cliente,
                 'id_mesa' => $request->id_mesa,
             ]);
 
@@ -322,41 +324,57 @@ class ReservaController extends Controller
             return response()->json(['disponibles' => [], 'ocupadas' => []]);
         }
 
-        $mesasDisponibles = Mesa::where('estado', 'disponible')
-            ->whereDoesntHave('reservas', function ($query) use ($fecha, $hora_inicio, $hora_fin) {
-                $query->where('fecha_reserva', $fecha)
-                    ->where('estado', '!=', 'cancelada')
-                    ->where(function ($q) use ($hora_inicio, $hora_fin) {
-                        $q->whereBetween('hora_inicio', [$hora_inicio, $hora_fin])
-                          ->orWhereBetween('hora_fin', [$hora_inicio, $hora_fin])
-                          ->orWhere(function ($qq) use ($hora_inicio, $hora_fin) {
-                              $qq->where('hora_inicio', '<=', $hora_inicio)
-                                 ->where('hora_fin', '>=', $hora_fin);
-                          });
-                    });
-            })
-            ->get();
+        try {
+            // Obtener todas las mesas disponibles
+            $mesasDisponibles = Mesa::where('estado', 'disponible')->get();
 
-        // Opcional: para mostrar mesas 'disponibles' pero ocupadas en ese horario
-        $mesasOcupadas = Mesa::where('estado', 'disponible')
-            ->whereHas('reservas', function ($query) use ($fecha, $hora_inicio, $hora_fin) {
-                $query->where('fecha_reserva', $fecha)
-                    ->where('estado', '!=', 'cancelada')
-                    ->where(function ($q) use ($hora_inicio, $hora_fin) {
-                        $q->whereBetween('hora_inicio', [$hora_inicio, $hora_fin])
-                          ->orWhereBetween('hora_fin', [$hora_inicio, $hora_fin])
-                          ->orWhere(function ($qq) use ($hora_inicio, $hora_fin) {
-                              $qq->where('hora_inicio', '<=', $hora_inicio)
-                                 ->where('hora_fin', '>=', $hora_fin);
-                          });
-                    });
-            })
-            ->get();
+            // Obtener reservas activas para la fecha y hora dadas
+            $fecha = $request->fecha;
+            $hora_inicio = $request->hora_inicio;
+            $hora_fin = $request->hora_fin;
 
-        return response()->json([
-            'disponibles' => $mesasDisponibles,
-            'ocupadas' => $mesasOcupadas
-        ]);
+            if (!$fecha || !$hora_inicio || !$hora_fin) {
+                return response()->json([
+                    'disponibles' => $mesasDisponibles,
+                    'ocupadas' => []
+                ]);
+            }
+
+            $mesasOcupadasIds = Reserva::where('fecha_reserva', $fecha)
+                ->where('estado', '!=', 'cancelada')
+                ->where(function ($query) use ($hora_inicio, $hora_fin) {
+                    $query->whereBetween('hora_inicio', [$hora_inicio, $hora_fin])
+                        ->orWhereBetween('hora_fin', [$hora_inicio, $hora_fin])
+                        ->orWhere(function ($q) use ($hora_inicio, $hora_fin) {
+                            $q->where('hora_inicio', '<=', $hora_inicio)
+                                ->where('hora_fin', '>=', $hora_fin);
+                        });
+                })
+                ->pluck('id_mesa')
+                ->toArray();
+
+            // Solo considerar mesas ocupadas que existan en la base de datos y estén en estado disponible
+            $mesasOcupadas = Mesa::whereIn('id_mesa', $mesasOcupadasIds)
+                ->where('estado', 'disponible')
+                ->get();
+
+            // Filtrar mesas disponibles para que no estén en ocupadas
+            $mesasDisponiblesFiltradas = $mesasDisponibles->filter(function($mesa) use ($mesasOcupadas) {
+                return !$mesasOcupadas->contains('id_mesa', $mesa->id_mesa);
+            })->values();
+
+            return response()->json([
+                'disponibles' => $mesasDisponiblesFiltradas,
+                'ocupadas' => $mesasOcupadas
+            ]);
+        } catch (\Throwable $e) {
+            Log::error('Error en disponibilidad de mesas: ' . $e->getMessage(), ['exception' => $e]);
+            return response()->json([
+                'disponibles' => [],
+                'ocupadas' => [],
+                'error' => 'Error interno al verificar disponibilidad de mesas.'
+            ], 500);
+        }
     }
 
     /**

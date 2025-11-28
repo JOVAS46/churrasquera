@@ -48,7 +48,7 @@
                                 @forelse ($categorias as $categoria)
                                     <tr>
                                         <td class="min-width">
-                                            <p>{{ $categoria->id }}</p>
+                                            <p>{{ $categoria->id_categoria }}</p>
                                         </td>
                                         <td class="min-width">
                                             <div class="lead">
@@ -62,16 +62,16 @@
                                         </td>
                                         <td>
                                             <div class="action d-flex" style="gap: 10px;">
-                                                <a href="{{ route('categorias.edit', $categoria->id) }}" 
+                                                <a href="{{ route('categorias.edit', $categoria->id_categoria) }}"
                                                    class="main-btn dark-btn btn-hover"
                                                    style="background-color: #5A2828; border-color: #5A2828; font-size: 16px; padding: 8px 16px;">
                                                     EDITAR
                                                 </a>
-                                                <form action="{{ route('categorias.destroy', $categoria->id) }}"
+                                                <form action="{{ route('categorias.destroy', $categoria->id_categoria) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" 
+                                                    <button type="submit"
                                                             class="main-btn dark-btn btn-hover"
                                                             style="background-color: #5A2828; border-color: #5A2828; font-size: 16px; padding: 8px 16px;"
                                                             onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoría?')">
