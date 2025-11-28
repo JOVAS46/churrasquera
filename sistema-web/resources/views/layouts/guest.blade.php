@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/lineicons.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/materialdesignicons.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
-    @vite('resources/sass/app.scss')
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @livewireStyles
 </head>
 <body>
@@ -24,6 +24,6 @@
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 @livewireScripts
-@vite('resources/js/app.js')
+<script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
