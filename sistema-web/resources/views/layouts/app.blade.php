@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/lineicons.css') }}" />
     <script src="https://cdn.jsdelivr.net/npm/inferencejs@1.0.11"></script>
     @livewireStyles
-    <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
+    <link href="/inf513/grupo09sa/churrasquera/sistema-web/public{{ mix('css/app.css') }}" rel="stylesheet">
 
     <!-- Configuración global de URLs para JavaScript -->
     <script>

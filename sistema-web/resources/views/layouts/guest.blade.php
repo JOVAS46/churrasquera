@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/lineicons.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/materialdesignicons.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
-    <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
+    <link href="/inf513/grupo09sa/churrasquera/sistema-web/public{{ mix('css/app.css') }}" rel="stylesheet">
     @livewireStyles
 </head>
 <body>
@@ -24,6 +24,6 @@
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 @livewireScripts
-<script src="{{ asset(mix('js/app.js')) }}"></script>
+<script src="/inf513/grupo09sa/churrasquera/sistema-web/public{{ mix('js/app.js') }}"></script>
 </body>
 </html>

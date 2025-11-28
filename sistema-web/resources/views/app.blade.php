@@ -12,10 +12,10 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Styles -->
-    <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
+    <link href="/inf513/grupo09sa/churrasquera/sistema-web/public{{ mix('css/app.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="{{ asset(mix('js/app.js')) }}" defer></script>
+    <script src="/inf513/grupo09sa/churrasquera/sistema-web/public{{ mix('js/app.js') }}" defer></script>
     @inertiaHead
 </head>
 <body class="font-sans antialiased">
