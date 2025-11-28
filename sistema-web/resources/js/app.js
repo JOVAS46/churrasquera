@@ -4,6 +4,11 @@ import { createInertiaApp } from '@inertiajs/vue3';
 
 // Helper simple para route() - genera URLs de Laravel
 window.route = function(name, params = {}) {
+    // Obtener base URL (para subcarpetas en producción)
+    const baseUrl = window.BASE_URL && window.BASE_URL !== 'http://localhost'
+        ? window.BASE_URL
+        : '';
+
     const routes = {
         // Rutas de pedidos
         'pedidos.index': '/pedidos',
@@ -48,10 +53,11 @@ window.route = function(name, params = {}) {
     const route = routes[name];
     if (!route) {
         console.warn(`⚠️ Route "${name}" no encontrada, usando fallback`);
-        return `/${name.replace(/\./g, '/')}`;
+        return `${baseUrl}/${name.replace(/\./g, '/')}`;
     }
-    if (typeof route === 'function') return route(params);
-    return route;
+
+    const path = typeof route === 'function' ? route(params) : route;
+    return `${baseUrl}${path}`;
 };
 
 createInertiaApp({

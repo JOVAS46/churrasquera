@@ -18,6 +18,11 @@ window.Popper = Popper;
 
 window.axios = axios;
 
+// Configurar base URL para peticiones AJAX
+if (window.BASE_URL && window.BASE_URL !== 'http://localhost') {
+    window.axios.defaults.baseURL = window.BASE_URL;
+}
+
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**

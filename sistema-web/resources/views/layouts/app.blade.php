@@ -13,6 +13,12 @@
     @livewireStyles
     <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
 
+    <!-- Configuración global de URLs para JavaScript -->
+    <script>
+        window.APP_URL = "{{ config('app.url') }}";
+        window.BASE_URL = "{{ config('app.url') }}";
+    </script>
+
     <style>
         /* Estilos del Sidebar */
         .sidebar-nav-wrapper {
