@@ -28,7 +28,7 @@
                     class="collapse dropdown-nav {{ request()->is(ltrim($menu->url ?? '', '/') . '*') ? 'show' : '' }}">
                     @foreach ($menu->hijos as $submenu)
     <li>
-        <a href="{{ $submenu->url ? $submenu->url : '#' }}"
+        <a href="/inf513/grupo09sa/churrasquera/sistema-web/public{{ $submenu->url ?? '#' }}"
            class="{{ request()->is(ltrim($submenu->url ?? '', '/') . '*') ? 'active' : '' }}">
             @if ($submenu->icono)
                 <i class="{{ $submenu->icono }} me-2"></i>
