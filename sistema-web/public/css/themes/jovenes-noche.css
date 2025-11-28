@@ -1,0 +1,602 @@
+/* Tema Jóvenes - Modo Noche */
+
+:root {
+    /* Colores nocturnos cyberpunk */
+    --color-primario: #00f5ff;
+    --color-secundario: #8a2be2;
+    --color-acento: #ff1493;
+    --color-exito: #39ff14;
+    --color-advertencia: #ffa500;
+    --color-error: #ff073a;
+    --color-info: #1e90ff;
+
+    /* Fondos oscuros */
+    --color-fondo: #0a0a0a;
+    --color-fondo-secundario: #1a1a1a;
+    --color-fondo-terciario: #2a2a2a;
+    --color-fondo-carta: #1e1e1e;
+
+    /* Texto neón */
+    --color-texto-primario: #ffffff;
+    --color-texto-secundario: #cccccc;
+    --color-texto-claro: #999999;
+    --color-texto-muted: #666666;
+
+    /* Sidebar cyberpunk */
+    --color-sidebar: #1a1a1a;
+    --color-sidebar-texto: #00f5ff;
+    --color-sidebar-hover: #2a2a2a;
+    --color-sidebar-activo: #8a2be2;
+
+    /* Navbar futurista */
+    --color-navbar: #1e1e1e;
+    --color-navbar-texto: #00f5ff;
+    --color-navbar-hover: #2a2a2a;
+
+    /* Bordes y sombras neón */
+    --color-borde: #333333;
+    --color-borde-input: #444444;
+    --color-borde-focus: #00f5ff;
+    --sombra-carta: 0 4px 15px rgba(0, 245, 255, 0.1);
+    --sombra-hover: 0 6px 25px rgba(0, 245, 255, 0.2);
+    --sombra-neon: 0 0 10px;
+
+    /* Fuentes futuristas */
+    --fuente-primaria: 'Segoe UI', 'Roboto', monospace;
+    --fuente-secundaria: 'Courier New', monospace;
+    --tamano-fuente-base: 15px;
+    --tamano-fuente-titulo: 1.8rem;
+    --tamano-fuente-subtitulo: 1.4rem;
+
+    /* Espaciado */
+    --espaciado-xs: 0.25rem;
+    --espaciado-sm: 0.5rem;
+    --espaciado-md: 1rem;
+    --espaciado-lg: 1.5rem;
+    --espaciado-xl: 2.5rem;
+
+    /* Bordes futuristas */
+    --radio-border: 4px;
+    --radio-border-pequeno: 2px;
+    --radio-border-grande: 8px;
+}
+
+/* Estilos base cyberpunk */
+body {
+    font-family: var(--fuente-primaria);
+    font-size: var(--tamano-fuente-base);
+    background: linear-gradient(135deg, var(--color-fondo) 0%, var(--color-fondo-secundario) 100%);
+    color: var(--color-texto-primario);
+    background-attachment: fixed;
+    background-image: 
+        linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    line-height: 1.6;
+}
+
+/* Títulos neón */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-primario);
+    font-weight: 700;
+    text-shadow: var(--sombra-neon) var(--color-primario);
+    letter-spacing: 1px;
+    font-family: var(--fuente-secundaria);
+}
+
+h1 {
+    font-size: var(--tamano-fuente-titulo);
+    margin-bottom: var(--espaciado-lg);
+    background: linear-gradient(45deg, var(--color-primario), var(--color-acento));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: glow-pulse 2s ease-in-out infinite alternate;
+}
+
+h2 {
+    font-size: var(--tamano-fuente-subtitulo);
+    margin-bottom: var(--espaciado-md);
+}
+
+@keyframes glow-pulse {
+    from { text-shadow: var(--sombra-neon) var(--color-primario); }
+    to { text-shadow: 0 0 20px var(--color-primario), 0 0 30px var(--color-acento); }
+}
+
+/* Sidebar cyberpunk */
+.sidebar {
+    background: linear-gradient(180deg, var(--color-sidebar) 0%, rgba(26, 26, 26, 0.9) 100%);
+    border-right: 2px solid var(--color-primario);
+    box-shadow: var(--sombra-carta);
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+.sidebar:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.05), transparent);
+    animation: scan-line 3s linear infinite;
+}
+
+@keyframes scan-line {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+}
+
+.sidebar .nav-item {
+    margin: var(--espaciado-xs) 0;
+}
+
+.sidebar .nav-link {
+    color: var(--color-sidebar-texto);
+    border: 1px solid transparent;
+    border-radius: var(--radio-border);
+    padding: var(--espaciado-md);
+    margin: 0 var(--espaciado-sm);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+    position: relative;
+    font-family: var(--fuente-secundaria);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.sidebar .nav-link:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, var(--color-primario), var(--color-acento));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: var(--radio-border);
+}
+
+.sidebar .nav-link:hover {
+    border-color: var(--color-primario);
+    background-color: var(--color-sidebar-hover);
+    transform: translateX(3px);
+    color: white;
+    text-shadow: var(--sombra-neon) var(--color-primario);
+    box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+}
+
+.sidebar .nav-link:hover:before {
+    opacity: 0.1;
+}
+
+.sidebar .nav-link.active {
+    background: linear-gradient(45deg, var(--color-sidebar-activo), var(--color-acento));
+    color: white;
+    font-weight: 700;
+    text-shadow: var(--sombra-neon) var(--color-acento);
+    border-color: var(--color-acento);
+    box-shadow: 0 0 20px rgba(255, 20, 147, 0.4);
+}
+
+/* Navbar futurista */
+.navbar {
+    background: var(--color-navbar);
+    border-bottom: 2px solid var(--color-primario);
+    box-shadow: var(--sombra-carta);
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+.navbar:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primario), var(--color-acento), var(--color-primario));
+    animation: border-glow 2s ease-in-out infinite;
+}
+
+@keyframes border-glow {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+.navbar-brand {
+    color: var(--color-navbar-texto) !important;
+    font-weight: 700;
+    font-size: 1.4rem;
+    font-family: var(--fuente-secundaria);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: var(--sombra-neon) var(--color-primario);
+}
+
+/* Botones cyberpunk */
+.btn {
+    border-radius: var(--radio-border);
+    font-weight: 700;
+    padding: var(--espaciado-md) var(--espaciado-lg);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    font-family: var(--fuente-secundaria);
+}
+
+.btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover:before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--color-primario), var(--color-acento));
+    color: var(--color-fondo);
+    border-color: var(--color-primario);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 245, 255, 0.3), var(--sombra-neon) var(--color-primario);
+    text-shadow: var(--sombra-neon) var(--color-primario);
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, var(--color-secundario), var(--color-info));
+    color: white;
+    border-color: var(--color-secundario);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3), var(--sombra-neon) var(--color-secundario);
+}
+
+/* Tarjetas futuristas */
+.card {
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-border-grande);
+    box-shadow: var(--sombra-carta);
+    background: var(--color-fondo-carta);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+.card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primario), var(--color-acento), var(--color-primario));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-hover);
+    border-color: var(--color-primario);
+}
+
+.card:hover:before {
+    opacity: 1;
+}
+
+.card-header {
+    background: linear-gradient(45deg, var(--color-primario), var(--color-acento));
+    color: var(--color-fondo);
+    font-weight: 700;
+    border: none;
+    padding: var(--espaciado-lg);
+    font-family: var(--fuente-secundaria);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: var(--sombra-neon) var(--color-fondo);
+}
+
+.card-body {
+    padding: var(--espaciado-lg);
+    background: var(--color-fondo-carta);
+}
+
+/* Formularios cyberpunk */
+.form-control {
+    background-color: var(--color-fondo-terciario);
+    border: 1px solid var(--color-borde-input);
+    border-radius: var(--radio-border);
+    padding: var(--espaciado-md);
+    font-size: 0.95rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--color-texto-primario);
+    font-family: var(--fuente-secundaria);
+}
+
+.form-control:focus {
+    background-color: var(--color-fondo-carta);
+    border-color: var(--color-borde-focus);
+    box-shadow: 0 0 0 0.2rem rgba(0, 245, 255, 0.15), inset var(--sombra-neon) var(--color-primario);
+    color: var(--color-texto-primario);
+    text-shadow: var(--sombra-neon) var(--color-primario);
+}
+
+.form-control::placeholder {
+    color: var(--color-texto-muted);
+    font-style: italic;
+}
+
+.form-label {
+    color: var(--color-primario);
+    font-weight: 700;
+    margin-bottom: var(--espaciado-sm);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: var(--fuente-secundaria);
+}
+
+/* Alertas cyberpunk */
+.alert {
+    border: 1px solid;
+    border-radius: var(--radio-border);
+    font-weight: 600;
+    padding: var(--espaciado-lg);
+    font-family: var(--fuente-secundaria);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.alert-success {
+    background: rgba(57, 255, 20, 0.1);
+    border-color: var(--color-exito);
+    color: var(--color-exito);
+    text-shadow: var(--sombra-neon) var(--color-exito);
+}
+
+.alert-danger {
+    background: rgba(255, 7, 58, 0.1);
+    border-color: var(--color-error);
+    color: var(--color-error);
+    text-shadow: var(--sombra-neon) var(--color-error);
+}
+
+.alert-warning {
+    background: rgba(255, 165, 0, 0.1);
+    border-color: var(--color-advertencia);
+    color: var(--color-advertencia);
+    text-shadow: var(--sombra-neon) var(--color-advertencia);
+}
+
+.alert-info {
+    background: rgba(30, 144, 255, 0.1);
+    border-color: var(--color-info);
+    color: var(--color-info);
+    text-shadow: var(--sombra-neon) var(--color-info);
+}
+
+/* Tablas cyberpunk */
+.table {
+    border-radius: var(--radio-border);
+    overflow: hidden;
+    box-shadow: var(--sombra-carta);
+    background: var(--color-fondo-carta);
+}
+
+.table thead th {
+    background: linear-gradient(45deg, var(--color-primario), var(--color-acento));
+    color: var(--color-fondo);
+    border: none;
+    padding: var(--espaciado-lg);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    font-family: var(--fuente-secundaria);
+    text-shadow: var(--sombra-neon) var(--color-fondo);
+}
+
+.table tbody tr {
+    background-color: var(--color-fondo-carta);
+    color: var(--color-texto-primario);
+    transition: all 0.3s ease;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: var(--color-fondo-terciario);
+}
+
+.table tbody tr:hover {
+    background-color: var(--color-fondo-secundario);
+    border-color: var(--color-primario);
+    box-shadow: 0 0 10px rgba(0, 245, 255, 0.2);
+    transform: scale(1.01);
+}
+
+/* Iconos cyberpunk */
+.icon {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 0 2px var(--color-primario));
+}
+
+.icon:hover {
+    transform: scale(1.2);
+    color: var(--color-acento);
+    filter: drop-shadow(var(--sombra-neon) var(--color-acento));
+    animation: icon-glitch 0.3s ease-in-out;
+}
+
+@keyframes icon-glitch {
+    0% { transform: scale(1.2) translateX(0); }
+    25% { transform: scale(1.2) translateX(-1px); }
+    50% { transform: scale(1.2) translateX(1px); }
+    75% { transform: scale(1.2) translateX(-1px); }
+    100% { transform: scale(1.2) translateX(0); }
+}
+
+/* Breadcrumb cyberpunk */
+.breadcrumb {
+    background: var(--color-fondo-carta);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-border);
+    padding: var(--espaciado-md) var(--espaciado-lg);
+    font-family: var(--fuente-secundaria);
+}
+
+.breadcrumb-item a {
+    color: var(--color-primario);
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--color-acento);
+    text-shadow: var(--sombra-neon) var(--color-acento);
+}
+
+.breadcrumb-item.active {
+    color: var(--color-texto-secundario);
+}
+
+/* Footer cyberpunk */
+.footer {
+    background: linear-gradient(135deg, var(--color-fondo-carta), var(--color-fondo-terciario));
+    color: var(--color-texto-primario);
+    padding: var(--espaciado-xl) 0;
+    margin-top: var(--espaciado-xl);
+    border-top: 2px solid var(--color-primario);
+    position: relative;
+}
+
+.footer:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primario), var(--color-acento), var(--color-primario));
+    animation: border-scan 3s linear infinite;
+}
+
+@keyframes border-scan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Scrollbar cyberpunk */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-fondo-secundario);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, var(--color-primario), var(--color-acento));
+    border-radius: var(--radio-border-pequeno);
+    box-shadow: inset var(--sombra-neon) var(--color-primario);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, var(--color-acento), var(--color-primario));
+}
+
+/* Animaciones cyberpunk avanzadas */
+@keyframes matrix-rain {
+    0% { transform: translateY(-100vh); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes data-stream {
+    0% { transform: scaleX(0); }
+    100% { transform: scaleX(1); }
+}
+
+@keyframes hologram {
+    0%, 100% { opacity: 1; text-shadow: var(--sombra-neon) var(--color-primario); }
+    50% { opacity: 0.8; text-shadow: 0 0 20px var(--color-primario), 0 0 30px var(--color-acento); }
+}
+
+.animate-hologram {
+    animation: hologram 2s ease-in-out infinite;
+}
+
+.animate-data-stream {
+    animation: data-stream 0.6s ease-out;
+}
+
+/* Estados de carga cyberpunk */
+.loading-cyberpunk {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading-cyberpunk:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--color-primario), transparent);
+    animation: cyber-scan 1.5s infinite;
+}
+
+@keyframes cyber-scan {
+    0% { left: -100%; opacity: 0; }
+    50% { opacity: 0.3; }
+    100% { left: 100%; opacity: 0; }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    :root {
+        --tamano-fuente-base: 14px;
+        --espaciado-md: 0.75rem;
+        --espaciado-lg: 1.25rem;
+    }
+    
+    .sidebar {
+        border-radius: 0;
+        border-right: none;
+        border-bottom: 2px solid var(--color-primario);
+    }
+    
+    .navbar {
+        border-radius: 0;
+        border-bottom: none;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+}

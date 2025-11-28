@@ -1,0 +1,341 @@
+/* Tema Niños - Modo Día */
+
+:root {
+    /* Colores base vibrantes y divertidos */
+    --color-primario: #ff6b6b;
+    --color-secundario: #4ecdc4;
+    --color-acento: #ffe66d;
+    --color-exito: #51cf66;
+    --color-advertencia: #ffd43b;
+    --color-error: #ff6b6b;
+    --color-info: #339af0;
+
+    /* Fondos alegres */
+    --color-fondo: #fff5f5;
+    --color-fondo-secundario: #ffe0e0;
+    --color-fondo-terciario: #ffeded;
+    --color-fondo-carta: #ffffff;
+
+    /* Texto colorido */
+    --color-texto-primario: #2d3436;
+    --color-texto-secundario: #636e72;
+    --color-texto-claro: #74b9ff;
+    --color-texto-muted: #95a5a6;
+
+    /* Sidebar divertido */
+    --color-sidebar: #ff6b6b;
+    --color-sidebar-texto: #ffffff;
+    --color-sidebar-hover: #e55454;
+    --color-sidebar-activo: #d63031;
+
+    /* Navbar colorido */
+    --color-navbar: #4ecdc4;
+    --color-navbar-texto: #ffffff;
+    --color-navbar-hover: #45b7b8;
+
+    /* Bordes y sombras suaves */
+    --color-borde: #fd79a8;
+    --color-borde-input: #ff7675;
+    --color-borde-focus: #fd79a8;
+    --sombra-carta: 0 4px 12px rgba(255, 107, 107, 0.15);
+    --sombra-hover: 0 6px 20px rgba(255, 107, 107, 0.25);
+
+    /* Fuentes grandes y legibles */
+    --fuente-primaria: 'Comic Sans MS', 'Arial', cursive;
+    --fuente-secundaria: 'Arial', sans-serif;
+    --tamano-fuente-base: 16px;
+    --tamano-fuente-titulo: 2rem;
+    --tamano-fuente-subtitulo: 1.5rem;
+
+    /* Espaciado generoso */
+    --espaciado-xs: 0.25rem;
+    --espaciado-sm: 0.5rem;
+    --espaciado-md: 1rem;
+    --espaciado-lg: 2rem;
+    --espaciado-xl: 3rem;
+
+    /* Bordes redondeados */
+    --radio-border: 12px;
+    --radio-border-pequeno: 8px;
+    --radio-border-grande: 20px;
+}
+
+/* Estilos base para tema niños */
+body {
+    font-family: var(--fuente-primaria);
+    font-size: var(--tamano-fuente-base);
+    background: linear-gradient(135deg, var(--color-fondo) 0%, var(--color-fondo-secundario) 100%);
+    color: var(--color-texto-primario);
+    background-attachment: fixed;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 230, 109, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(78, 205, 196, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 107, 107, 0.2) 0%, transparent 50%);
+}
+
+/* Títulos divertidos */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-primario);
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: var(--tamano-fuente-titulo);
+    margin-bottom: var(--espaciado-lg);
+}
+
+h2 {
+    font-size: var(--tamano-fuente-subtitulo);
+    margin-bottom: var(--espaciado-md);
+}
+
+/* Sidebar colorido */
+.sidebar {
+    background: linear-gradient(180deg, var(--color-sidebar) 0%, var(--color-sidebar-hover) 100%);
+    border-radius: 0 var(--radio-border-grande) var(--radio-border-grande) 0;
+    box-shadow: var(--sombra-carta);
+}
+
+.sidebar .nav-item {
+    margin: var(--espaciado-sm) 0;
+}
+
+.sidebar .nav-link {
+    color: var(--color-sidebar-texto);
+    border-radius: var(--radio-border);
+    padding: var(--espaciado-md);
+    margin: 0 var(--espaciado-sm);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.sidebar .nav-link:hover {
+    background-color: var(--color-sidebar-hover);
+    transform: translateX(5px);
+    color: white;
+}
+
+.sidebar .nav-link.active {
+    background-color: var(--color-sidebar-activo);
+    color: white;
+    font-weight: bold;
+}
+
+/* Navbar alegre */
+.navbar {
+    background: linear-gradient(90deg, var(--color-navbar) 0%, var(--color-acento) 100%);
+    border-radius: 0 0 var(--radio-border-grande) var(--radio-border-grande);
+    box-shadow: var(--sombra-carta);
+}
+
+.navbar-brand {
+    color: var(--color-navbar-texto) !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* Botones divertidos */
+.btn {
+    border-radius: var(--radio-border);
+    font-weight: bold;
+    padding: var(--espaciado-md) var(--espaciado-lg);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--color-primario), var(--color-acento));
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 107, 107, 0.3);
+    background: linear-gradient(45deg, var(--color-acento), var(--color-primario));
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, var(--color-secundario), var(--color-info));
+    border: none;
+    color: white;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(78, 205, 196, 0.3);
+}
+
+/* Tarjetas coloridas */
+.card {
+    border: none;
+    border-radius: var(--radio-border-grande);
+    box-shadow: var(--sombra-carta);
+    background: var(--color-fondo-carta);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-hover);
+}
+
+.card-header {
+    background: linear-gradient(90deg, var(--color-primario), var(--color-secundario));
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: var(--espaciado-lg);
+}
+
+.card-body {
+    padding: var(--espaciado-lg);
+}
+
+/* Formularios amigables */
+.form-control {
+    border: 2px solid var(--color-borde-input);
+    border-radius: var(--radio-border);
+    padding: var(--espaciado-md);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--color-borde-focus);
+    box-shadow: 0 0 0 0.2rem rgba(253, 121, 168, 0.25);
+}
+
+.form-label {
+    color: var(--color-texto-primario);
+    font-weight: bold;
+    margin-bottom: var(--espaciado-sm);
+}
+
+/* Alertas coloridas */
+.alert {
+    border: none;
+    border-radius: var(--radio-border);
+    font-weight: bold;
+    padding: var(--espaciado-lg);
+}
+
+.alert-success {
+    background: linear-gradient(45deg, var(--color-exito), #7bed9f);
+    color: white;
+}
+
+.alert-danger {
+    background: linear-gradient(45deg, var(--color-error), #ff7675);
+    color: white;
+}
+
+.alert-warning {
+    background: linear-gradient(45deg, var(--color-advertencia), #fdcb6e);
+    color: #333;
+}
+
+.alert-info {
+    background: linear-gradient(45deg, var(--color-info), #74b9ff);
+    color: white;
+}
+
+/* Tablas coloridas */
+.table {
+    border-radius: var(--radio-border);
+    overflow: hidden;
+    box-shadow: var(--sombra-carta);
+}
+
+.table thead th {
+    background: linear-gradient(90deg, var(--color-primario), var(--color-secundario));
+    color: white;
+    border: none;
+    padding: var(--espaciado-lg);
+    font-weight: bold;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: var(--color-fondo-terciario);
+}
+
+.table tbody tr:hover {
+    background-color: var(--color-fondo-secundario);
+}
+
+/* Iconos animados */
+.icon {
+    transition: all 0.3s ease;
+}
+
+.icon:hover {
+    transform: scale(1.2) rotate(5deg);
+    color: var(--color-acento);
+}
+
+/* Breadcrumb divertido */
+.breadcrumb {
+    background: linear-gradient(90deg, var(--color-fondo-secundario), var(--color-fondo-terciario));
+    border-radius: var(--radio-border);
+    padding: var(--espaciado-md) var(--espaciado-lg);
+}
+
+.breadcrumb-item a {
+    color: var(--color-primario);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--color-secundario);
+    text-decoration: underline;
+}
+
+/* Footer colorido */
+.footer {
+    background: linear-gradient(90deg, var(--color-sidebar), var(--color-navbar));
+    color: white;
+    padding: var(--espaciado-xl) 0;
+    margin-top: var(--espaciado-xl);
+    border-radius: var(--radio-border-grande) var(--radio-border-grande) 0 0;
+}
+
+/* Animaciones divertidas */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.animate-bounce:hover {
+    animation: bounce 0.6s ease-in-out;
+}
+
+.animate-pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    :root {
+        --tamano-fuente-base: 14px;
+        --espaciado-md: 0.75rem;
+        --espaciado-lg: 1.5rem;
+    }
+    
+    .sidebar {
+        border-radius: 0;
+    }
+    
+    .navbar {
+        border-radius: 0;
+    }
+}

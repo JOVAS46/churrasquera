@@ -1,0 +1,342 @@
+/* Importar Bootstrap y estilos base */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/LineIcons/4.0/LineIcons.css');
+
+/* Importar estilos de accesibilidad (siempre cargados) */
+@import './accesibilidad.css';
+
+/* Variables globales por defecto */
+:root {
+    /* Variables que se pueden sobrescribir por los temas */
+    --transition-default: all 0.3s ease;
+    --z-index-dropdown: 1000;
+    --z-index-modal: 1050;
+    --z-index-tooltip: 1070;
+}
+
+/* Estilos base del sistema */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Layout base */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Sidebar base */
+.sidebar-nav-wrapper {
+    width: 260px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    transition: var(--transition-default);
+    z-index: 1000;
+}
+
+.sidebar-nav-wrapper.collapsed {
+    margin-left: -260px;
+}
+
+.navbar-logo {
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-text {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.logo-icon {
+    margin-right: 0.75rem;
+    font-size: 1.5rem;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+}
+
+.sidebar-nav .nav-item {
+    margin: 0.25rem 0;
+}
+
+.sidebar-nav .nav-item a {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-default);
+}
+
+.sidebar-nav .nav-item .icon {
+    margin-right: 0.75rem;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-nav .dropdown-nav {
+    display: none;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0;
+}
+
+.sidebar-nav .dropdown-nav.show {
+    display: block;
+}
+
+.sidebar-nav .dropdown-nav a {
+    padding-left: 3.5rem;
+    font-size: 0.9rem;
+}
+
+/* Main content */
+.main-wrapper {
+    flex: 1;
+    margin-left: 260px;
+    transition: var(--transition-default);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-wrapper.sidebar-collapsed {
+    margin-left: 0;
+}
+
+/* Header */
+.header {
+    background: var(--color-navbar, #ffffff);
+    border-bottom: 1px solid var(--color-borde, #dee2e6);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Section content */
+.section {
+    flex: 1;
+    padding: 1.5rem 0;
+}
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--color-borde, #dee2e6);
+}
+
+/* Profile dropdown */
+.profile-box {
+    position: relative;
+}
+
+.profile-box .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--color-fondo-carta, white);
+    border: 1px solid var(--color-borde, #dee2e6);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    z-index: var(--z-index-dropdown);
+}
+
+.profile-box .dropdown-menu.show {
+    display: block;
+}
+
+.profile-box .dropdown-menu a {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: var(--color-texto-primario, #333);
+    text-decoration: none;
+    transition: var(--transition-default);
+}
+
+.profile-box .dropdown-menu a:hover {
+    background: var(--color-fondo-secundario, #f8f9fa);
+}
+
+.profile-box .dropdown-menu i {
+    margin-right: 0.5rem;
+    width: 16px;
+}
+
+/* Overlay para mobile */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar-nav-wrapper {
+        margin-left: -260px;
+    }
+    
+    .sidebar-nav-wrapper:not(.collapsed) {
+        margin-left: 0;
+    }
+    
+    .main-wrapper {
+        margin-left: 0;
+    }
+    
+    .overlay {
+        display: block;
+    }
+    
+    .busqueda-wrapper {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .header .container-fluid {
+        padding: 0 1rem;
+    }
+    
+    .section .container-fluid {
+        padding: 0 1rem;
+    }
+    
+    .footer .container-fluid {
+        padding: 0 1rem;
+    }
+}
+
+/* Estados de carga */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Utilidades */
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.user-select-none {
+    user-select: none;
+}
+
+/* Focus visible para accesibilidad */
+.btn:focus-visible,
+.form-control:focus-visible,
+a:focus-visible {
+    outline: 2px solid #0066cc;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .sidebar-nav-wrapper,
+    .header,
+    .configuracion-wrapper,
+    .busqueda-wrapper {
+        display: none !important;
+    }
+    
+    .main-wrapper {
+        margin-left: 0 !important;
+    }
+    
+    .section {
+        padding: 0 !important;
+    }
+    
+    * {
+        color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --color-borde: #000000;
+        --color-texto-primario: #000000;
+        --color-fondo: #ffffff;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *:before,
+    *:after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    body:not([data-modo]) {
+        --color-fondo: #1a1a1a;
+        --color-texto-primario: #ffffff;
+        --color-borde: #444444;
+    }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Selection styles */
+::selection {
+    background: rgba(52, 152, 219, 0.3);
+}
+
+::-moz-selection {
+    background: rgba(52, 152, 219, 0.3);
+}

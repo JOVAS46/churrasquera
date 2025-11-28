@@ -1,0 +1,374 @@
+/* Estilos de Accesibilidad - Tamaños de Fuente */
+
+/* Fuente pequeña */
+.font-pequeño {
+    font-size: 14px !important;
+}
+
+.font-pequeño h1 { font-size: 1.5rem !important; }
+.font-pequeño h2 { font-size: 1.3rem !important; }
+.font-pequeño h3 { font-size: 1.2rem !important; }
+.font-pequeño h4 { font-size: 1.1rem !important; }
+.font-pequeño h5 { font-size: 1rem !important; }
+.font-pequeño h6 { font-size: 0.9rem !important; }
+
+.font-pequeño .btn {
+    font-size: 0.8rem !important;
+    padding: 0.5rem 0.75rem !important;
+}
+
+.font-pequeño .form-control {
+    font-size: 0.9rem !important;
+}
+
+.font-pequeño .navbar-brand {
+    font-size: 1.2rem !important;
+}
+
+/* Fuente normal (por defecto) */
+.font-normal {
+    /* Mantiene los tamaños definidos en los temas */
+}
+
+/* Fuente grande */
+.font-grande {
+    font-size: 18px !important;
+}
+
+.font-grande h1 { font-size: 2.2rem !important; }
+.font-grande h2 { font-size: 1.8rem !important; }
+.font-grande h3 { font-size: 1.6rem !important; }
+.font-grande h4 { font-size: 1.4rem !important; }
+.font-grande h5 { font-size: 1.2rem !important; }
+.font-grande h6 { font-size: 1.1rem !important; }
+
+.font-grande .btn {
+    font-size: 1.1rem !important;
+    padding: 0.75rem 1.5rem !important;
+}
+
+.font-grande .form-control {
+    font-size: 1.1rem !important;
+    padding: 0.75rem 1rem !important;
+}
+
+.font-grande .navbar-brand {
+    font-size: 1.8rem !important;
+}
+
+.font-grande .sidebar .nav-link {
+    font-size: 1rem !important;
+    padding: 1rem 1.25rem !important;
+}
+
+/* Alto Contraste */
+.contraste-alto {
+    filter: contrast(150%) brightness(110%);
+}
+
+.contraste-alto .card,
+.contraste-alto .table,
+.contraste-alto .btn,
+.contraste-alto .form-control {
+    border-width: 2px !important;
+}
+
+.contraste-alto .text-muted,
+.contraste-alto .text-secondary {
+    color: inherit !important;
+    font-weight: 600 !important;
+}
+
+/* Tema niños con alto contraste */
+body[data-tema="ninos"].contraste-alto {
+    --color-texto-muted: #2c3e50;
+    --sombra-carta: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Tema jóvenes con alto contraste */
+body[data-tema="jovenes"].contraste-alto {
+    --color-texto-muted: #2c3e50;
+    --sombra-carta: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Tema adultos con alto contraste */
+body[data-tema="adultos"].contraste-alto {
+    --color-texto-muted: #2c3e50;
+}
+
+/* Modo noche con alto contraste */
+body[data-modo="noche"].contraste-alto {
+    --color-texto-muted: #ffffff;
+    --color-borde: #666666;
+}
+
+/* Reducir Animaciones */
+.sin-animaciones,
+.sin-animaciones *,
+.sin-animaciones *:before,
+.sin-animaciones *:after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+
+.sin-animaciones .btn:hover {
+    transform: none !important;
+}
+
+.sin-animaciones .card:hover {
+    transform: none !important;
+}
+
+.sin-animaciones .sidebar .nav-link:hover {
+    transform: none !important;
+}
+
+.sin-animaciones .icon:hover {
+    transform: none !important;
+}
+
+/* Enfoque mejorado para accesibilidad */
+.font-grande :focus,
+.contraste-alto :focus {
+    outline: 3px solid #0066cc !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 5px #0066cc !important;
+}
+
+/* Botones más grandes para accesibilidad */
+.font-grande .btn {
+    min-height: 44px !important;
+    min-width: 44px !important;
+}
+
+/* Links más visibles */
+.contraste-alto a {
+    text-decoration: underline !important;
+    font-weight: 600 !important;
+}
+
+/* Iconos más grandes */
+.font-grande .icon,
+.font-grande i {
+    font-size: 1.3em !important;
+}
+
+/* Espaciado mejorado */
+.font-grande .sidebar .nav-item {
+    margin: 0.5rem 0 !important;
+}
+
+.font-grande .config-group {
+    margin-bottom: 2.5rem !important;
+}
+
+.font-grande .form-group {
+    margin-bottom: 2rem !important;
+}
+
+/* Mejoras específicas para formularios */
+.font-grande .form-label {
+    font-size: 1.2rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.font-grande .form-text {
+    font-size: 1rem !important;
+}
+
+/* Alertas más prominentes */
+.contraste-alto .alert {
+    border-width: 3px !important;
+    font-weight: 700 !important;
+}
+
+/* Tablas más legibles */
+.font-grande .table td,
+.font-grande .table th {
+    padding: 1.25rem !important;
+    line-height: 1.8 !important;
+}
+
+.contraste-alto .table thead th {
+    color: #ffffff !important;
+    background-color: #000000 !important;
+}
+
+/* Mejoras para dropdown */
+.font-grande .dropdown-item {
+    padding: 1rem 1.5rem !important;
+    font-size: 1.1rem !important;
+}
+
+/* Mejoras para modal */
+.font-grande .modal-header {
+    padding: 2rem !important;
+}
+
+.font-grande .modal-body {
+    padding: 2rem !important;
+    line-height: 2 !important;
+}
+
+.font-grande .modal-footer {
+    padding: 2rem !important;
+}
+
+/* Breadcrumb más legible */
+.font-grande .breadcrumb {
+    padding: 1.25rem 2rem !important;
+}
+
+.font-grande .breadcrumb-item {
+    font-size: 1.1rem !important;
+}
+
+/* Paginación más accesible */
+.font-grande .pagination .page-link {
+    padding: 1rem 1.5rem !important;
+    font-size: 1.1rem !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+}
+
+/* Badges más visibles */
+.contraste-alto .badge {
+    border: 2px solid #000000 !important;
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+/* Mejoras para el configurador de temas */
+.font-grande .config-panel {
+    width: 480px !important;
+}
+
+.font-grande .config-header h5 {
+    font-size: 1.5rem !important;
+}
+
+.font-grande .config-label {
+    font-size: 1.3rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.font-grande .btn-tema {
+    padding: 1.5rem !important;
+    font-size: 1.2rem !important;
+}
+
+.font-grande .btn-tema small {
+    font-size: 1rem !important;
+}
+
+/* Estados de error más visibles */
+.contraste-alto .is-invalid,
+.contraste-alto .form-control:invalid {
+    border-color: #ff0000 !important;
+    border-width: 3px !important;
+    box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.25) !important;
+}
+
+.contraste-alto .invalid-feedback {
+    color: #ff0000 !important;
+    font-weight: 700 !important;
+    font-size: 1.1em !important;
+}
+
+/* Estados de éxito más visibles */
+.contraste-alto .is-valid,
+.contraste-alto .form-control:valid {
+    border-color: #008000 !important;
+    border-width: 3px !important;
+    box-shadow: 0 0 0 0.25rem rgba(0, 128, 0, 0.25) !important;
+}
+
+.contraste-alto .valid-feedback {
+    color: #008000 !important;
+    font-weight: 700 !important;
+    font-size: 1.1em !important;
+}
+
+/* Responsive para accesibilidad */
+@media (max-width: 768px) {
+    .font-grande .config-panel {
+        width: 95vw !important;
+        padding: 1rem !important;
+    }
+    
+    .font-grande .btn {
+        font-size: 1rem !important;
+        padding: 0.75rem 1rem !important;
+    }
+    
+    .font-grande .sidebar .nav-link {
+        font-size: 0.95rem !important;
+        padding: 1rem !important;
+    }
+}
+
+/* Modo de alto contraste para impresión */
+@media print {
+    .contraste-alto * {
+        background: white !important;
+        color: black !important;
+        text-shadow: none !important;
+        box-shadow: none !important;
+    }
+    
+    .contraste-alto .btn,
+    .contraste-alto .card,
+    .contraste-alto .table {
+        border: 2px solid black !important;
+    }
+}
+
+/* Mejoras para lectores de pantalla */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.sr-only-focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
+
+/* Indicadores visuales para elementos interactivos */
+.contraste-alto button,
+.contraste-alto a,
+.contraste-alto input[type="button"],
+.contraste-alto input[type="submit"],
+.contraste-alto .btn {
+    cursor: pointer !important;
+    position: relative;
+}
+
+.contraste-alto button:hover,
+.contraste-alto a:hover,
+.contraste-alto .btn:hover {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-color: #000000 !important;
+}
+
+/* Mejor contraste para placeholders */
+.contraste-alto ::placeholder {
+    color: #666666 !important;
+    opacity: 1 !important;
+    font-weight: 600 !important;
+}

@@ -1,0 +1,395 @@
+/* Tema Niños - Modo Noche */
+
+:root {
+    /* Colores nocturnos suaves y acogedores */
+    --color-primario: #ff8787;
+    --color-secundario: #65d3cd;
+    --color-acento: #fff176;
+    --color-exito: #81c784;
+    --color-advertencia: #ffb74d;
+    --color-error: #ff8a80;
+    --color-info: #64b5f6;
+
+    /* Fondos nocturnos */
+    --color-fondo: #1a1a2e;
+    --color-fondo-secundario: #16213e;
+    --color-fondo-terciario: #0f3460;
+    --color-fondo-carta: #162447;
+
+    /* Texto nocturno */
+    --color-texto-primario: #f8f9fa;
+    --color-texto-secundario: #dee2e6;
+    --color-texto-claro: #adb5bd;
+    --color-texto-muted: #868e96;
+
+    /* Sidebar nocturno */
+    --color-sidebar: #2c3e50;
+    --color-sidebar-texto: #ecf0f1;
+    --color-sidebar-hover: #34495e;
+    --color-sidebar-activo: #3498db;
+
+    /* Navbar nocturno */
+    --color-navbar: #34495e;
+    --color-navbar-texto: #ecf0f1;
+    --color-navbar-hover: #2c3e50;
+
+    /* Bordes y sombras nocturnos */
+    --color-borde: #495057;
+    --color-borde-input: #6c757d;
+    --color-borde-focus: #80bdff;
+    --sombra-carta: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --sombra-hover: 0 6px 20px rgba(0, 0, 0, 0.4);
+
+    /* Fuentes y espaciado */
+    --fuente-primaria: 'Comic Sans MS', 'Arial', cursive;
+    --fuente-secundaria: 'Arial', sans-serif;
+    --tamano-fuente-base: 16px;
+    --tamano-fuente-titulo: 2rem;
+    --tamano-fuente-subtitulo: 1.5rem;
+
+    /* Espaciado */
+    --espaciado-xs: 0.25rem;
+    --espaciado-sm: 0.5rem;
+    --espaciado-md: 1rem;
+    --espaciado-lg: 2rem;
+    --espaciado-xl: 3rem;
+
+    /* Bordes redondeados */
+    --radio-border: 12px;
+    --radio-border-pequeno: 8px;
+    --radio-border-grande: 20px;
+}
+
+/* Estilos base para tema niños nocturno */
+body {
+    font-family: var(--fuente-primaria);
+    font-size: var(--tamano-fuente-base);
+    background: linear-gradient(135deg, var(--color-fondo) 0%, var(--color-fondo-secundario) 100%);
+    color: var(--color-texto-primario);
+    background-attachment: fixed;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 135, 135, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(101, 211, 205, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 241, 118, 0.1) 0%, transparent 50%);
+}
+
+/* Títulos nocturnos */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-primario);
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-size: var(--tamano-fuente-titulo);
+    margin-bottom: var(--espaciado-lg);
+}
+
+h2 {
+    font-size: var(--tamano-fuente-subtitulo);
+    margin-bottom: var(--espaciado-md);
+}
+
+/* Sidebar nocturno */
+.sidebar {
+    background: linear-gradient(180deg, var(--color-sidebar) 0%, var(--color-sidebar-hover) 100%);
+    border-radius: 0 var(--radio-border-grande) var(--radio-border-grande) 0;
+    box-shadow: var(--sombra-carta);
+    border-right: 2px solid rgba(52, 152, 219, 0.3);
+}
+
+.sidebar .nav-item {
+    margin: var(--espaciado-sm) 0;
+}
+
+.sidebar .nav-link {
+    color: var(--color-sidebar-texto);
+    border-radius: var(--radio-border);
+    padding: var(--espaciado-md);
+    margin: 0 var(--espaciado-sm);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.sidebar .nav-link:hover {
+    background-color: var(--color-sidebar-hover);
+    transform: translateX(5px);
+    color: var(--color-acento);
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+}
+
+.sidebar .nav-link.active {
+    background-color: var(--color-sidebar-activo);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+}
+
+/* Navbar nocturno */
+.navbar {
+    background: linear-gradient(90deg, var(--color-navbar) 0%, var(--color-sidebar) 100%);
+    border-radius: 0 0 var(--radio-border-grande) var(--radio-border-grande);
+    box-shadow: var(--sombra-carta);
+    border-bottom: 2px solid rgba(52, 152, 219, 0.3);
+}
+
+.navbar-brand {
+    color: var(--color-navbar-texto) !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Botones nocturnos */
+.btn {
+    border-radius: var(--radio-border);
+    font-weight: bold;
+    padding: var(--espaciado-md) var(--espaciado-lg);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--color-primario), var(--color-acento));
+    border: 1px solid var(--color-primario);
+    color: var(--color-fondo);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 135, 135, 0.4);
+    background: linear-gradient(45deg, var(--color-acento), var(--color-primario));
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, var(--color-secundario), var(--color-info));
+    border: 1px solid var(--color-secundario);
+    color: var(--color-fondo);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(101, 211, 205, 0.4);
+}
+
+/* Tarjetas nocturnas */
+.card {
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-border-grande);
+    box-shadow: var(--sombra-carta);
+    background: var(--color-fondo-carta);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-hover);
+    border-color: var(--color-primario);
+}
+
+.card-header {
+    background: linear-gradient(90deg, var(--color-primario), var(--color-secundario));
+    color: var(--color-fondo);
+    font-weight: bold;
+    border: none;
+    padding: var(--espaciado-lg);
+}
+
+.card-body {
+    padding: var(--espaciado-lg);
+    background: var(--color-fondo-carta);
+}
+
+/* Formularios nocturnos */
+.form-control {
+    background-color: var(--color-fondo-terciario);
+    border: 2px solid var(--color-borde-input);
+    border-radius: var(--radio-border);
+    padding: var(--espaciado-md);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    color: var(--color-texto-primario);
+}
+
+.form-control:focus {
+    background-color: var(--color-fondo-carta);
+    border-color: var(--color-borde-focus);
+    box-shadow: 0 0 0 0.2rem rgba(128, 189, 255, 0.25);
+    color: var(--color-texto-primario);
+}
+
+.form-control::placeholder {
+    color: var(--color-texto-muted);
+}
+
+.form-label {
+    color: var(--color-texto-primario);
+    font-weight: bold;
+    margin-bottom: var(--espaciado-sm);
+}
+
+/* Alertas nocturnas */
+.alert {
+    border: 1px solid;
+    border-radius: var(--radio-border);
+    font-weight: bold;
+    padding: var(--espaciado-lg);
+}
+
+.alert-success {
+    background: linear-gradient(45deg, var(--color-exito), rgba(129, 199, 132, 0.8));
+    border-color: var(--color-exito);
+    color: var(--color-fondo);
+}
+
+.alert-danger {
+    background: linear-gradient(45deg, var(--color-error), rgba(255, 138, 128, 0.8));
+    border-color: var(--color-error);
+    color: var(--color-fondo);
+}
+
+.alert-warning {
+    background: linear-gradient(45deg, var(--color-advertencia), rgba(255, 183, 77, 0.8));
+    border-color: var(--color-advertencia);
+    color: var(--color-fondo);
+}
+
+.alert-info {
+    background: linear-gradient(45deg, var(--color-info), rgba(100, 181, 246, 0.8));
+    border-color: var(--color-info);
+    color: var(--color-fondo);
+}
+
+/* Tablas nocturnas */
+.table {
+    border-radius: var(--radio-border);
+    overflow: hidden;
+    box-shadow: var(--sombra-carta);
+    background: var(--color-fondo-carta);
+}
+
+.table thead th {
+    background: linear-gradient(90deg, var(--color-primario), var(--color-secundario));
+    color: var(--color-fondo);
+    border: none;
+    padding: var(--espaciado-lg);
+    font-weight: bold;
+}
+
+.table tbody tr {
+    background-color: var(--color-fondo-carta);
+    color: var(--color-texto-primario);
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: var(--color-fondo-terciario);
+}
+
+.table tbody tr:hover {
+    background-color: var(--color-fondo-secundario);
+}
+
+/* Iconos nocturnos */
+.icon {
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 3px rgba(255, 241, 118, 0.3));
+}
+
+.icon:hover {
+    transform: scale(1.2) rotate(5deg);
+    color: var(--color-acento);
+    filter: drop-shadow(0 0 8px rgba(255, 241, 118, 0.6));
+}
+
+/* Breadcrumb nocturno */
+.breadcrumb {
+    background: var(--color-fondo-carta);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-border);
+    padding: var(--espaciado-md) var(--espaciado-lg);
+}
+
+.breadcrumb-item a {
+    color: var(--color-primario);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--color-secundario);
+    text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+    color: var(--color-texto-secundario);
+}
+
+/* Footer nocturno */
+.footer {
+    background: linear-gradient(90deg, var(--color-fondo-terciario), var(--color-sidebar));
+    color: var(--color-texto-primario);
+    padding: var(--espaciado-xl) 0;
+    margin-top: var(--espaciado-xl);
+    border-radius: var(--radio-border-grande) var(--radio-border-grande) 0 0;
+    border-top: 2px solid rgba(52, 152, 219, 0.3);
+}
+
+/* Animaciones nocturnas con efectos de brillo */
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 5px rgba(255, 241, 118, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(255, 241, 118, 0.6); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.animate-glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+.animate-float:hover {
+    animation: float 0.6s ease-in-out;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-fondo-secundario);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-primario);
+    border-radius: var(--radio-border-pequeno);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-acento);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    :root {
+        --tamano-fuente-base: 14px;
+        --espaciado-md: 0.75rem;
+        --espaciado-lg: 1.5rem;
+    }
+    
+    .sidebar {
+        border-radius: 0;
+        border-right: none;
+        border-bottom: 2px solid rgba(52, 152, 219, 0.3);
+    }
+    
+    .navbar {
+        border-radius: 0;
+        border-bottom: none;
+    }
+}
