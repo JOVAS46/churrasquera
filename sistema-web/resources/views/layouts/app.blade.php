@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/lineicons.css') }}" />
     <script src="https://cdn.jsdelivr.net/npm/inferencejs@1.0.11"></script>
     @livewireStyles
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
 
     <style>
         /* Estilos del Sidebar */
@@ -490,7 +490,7 @@
 
     <!-- ========= All Javascript files linkup ======== -->
     @livewireScripts
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ asset(mix('js/app.js')) }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     @yield('scripts')
 </body>
