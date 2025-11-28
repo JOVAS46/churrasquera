@@ -42,7 +42,7 @@
         @else
             {{-- Menú simple sin submenús --}}
             <li class="nav-item {{ request()->is(ltrim($menu->url ?? '', '/') . '*') ? 'active' : '' }}">
-                <a href="{{ $menu->url ? url(ltrim($menu->url, '/')) : '#' }}">
+                <a href="/inf513/grupo09sa/churrasquera/sistema-web/public{{ $menu->url ?? '#' }}">
                     <span class="icon">
                         <i class="{{ $menu->icono ?? 'lni lni-circle' }}"></i>
                     </span>
