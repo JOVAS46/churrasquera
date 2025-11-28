@@ -84,6 +84,9 @@ class PagoFacilController extends Controller
             return redirect()->route('home')->with('success', 'Este pedido ya ha sido pagado.');
         }
 
+        // Hardcodear la URL de pago
+        $urlPago = "https://mail.tecnoweb.org.bo/inf513/grupo09sa/churrasquera/sistema-web/public/pago/pedido/$pedidoId";
+
         // Datos del cliente (puedes obtenerlos de la sesión o request)
         $clientData = [
             'pedidoId' => $pedidoId,
@@ -91,7 +94,8 @@ class PagoFacilController extends Controller
             'documentType' => 1, // 1 = CI, 2 = Pasaporte
             'documentId' => '0000000',
             'phoneNumber' => '00000000',
-            'email' => auth()->user()->email ?? 'cliente@example.com'
+            'email' => auth()->user()->email ?? 'cliente@example.com',
+            'urlPago' => $urlPago
         ];
 
         return view('pagos.qr', $clientData);
